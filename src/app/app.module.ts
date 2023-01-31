@@ -6,11 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PokemonDetailsComponent } from './pokemon-details/pokemon-details.component';
+import { PokemonDetailsComponent } from './pokemon-details-card/pokemon-details.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PokemonShowComponent } from './pokemon-show/pokemon-show.component';
 import { PokemonDetailsPageComponent } from './pokemon-details-page/pokemon-details-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddPokemonButtonComponent } from './add-pokemon-button/add-pokemon-button.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomePageComponent,
     PokemonShowComponent,
     PokemonDetailsPageComponent,
+    AddPokemonButtonComponent,
   ],
   imports: [
     BrowserModule,

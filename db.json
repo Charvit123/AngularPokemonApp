@@ -71,6 +71,12 @@
       "type": "normal",
       "imgUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/019.png",
       "id": 12
+    },
+    {
+      "name": "Raticate",
+      "type": "Normal",
+      "imgUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/020.png",
+      "id": 13
     }
   ],
   "comments": [

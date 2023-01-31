@@ -28,12 +28,118 @@
   ></button>
 </div>
 <div class="flex d-flex justify-content-center mt-3 mb-3">
-  <button
-    type="button"
-    class="btn btn-primary"
-    data-bs-toggle="modal"
-    data-bs-target="#exampleModal"
-  >
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add Pokemon</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="pokemonForm">
+        <div class="mb-3">
+          <label for="exampleInputName" class="form-label">Pokemon Name</label>
+          <input
+            formControlName="name"
+            class="form-control"
+            id="exampleInputName"
+            aria-describedby="emailHelp"
+            placeholder="Pokemon Name"
+            required
+            minlength="4"
+          />
+          <div
+            *ngIf="this.Name.touched && this.Name.invalid"
+            class="alert alert-danger p-1 px-3 mt-2"
+          >
+            <div *ngIf="this.Name.errors?.['required']">Name is required.</div>
+            <div *ngIf="this.Name.errors?.['minlength']">
+              Name must be at least 4 characters long.
+            </div>
+            <div *ngIf="this.Name.errors?.['pattern']">
+              Name can not be number.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputType" class="form-label">Speciality</label>
+          <input
+            formControlName="type"
+            class="form-control"
+            id="exampleInputType"
+            placeholder="Pokemon Speciality"
+            required
+          />
+          <div
+            *ngIf="this.Types.invalid && this.Types.touched"
+            class="alert alert-danger p-1 px-3 mt-2"
+          >
+            <div *ngIf="this.Types.errors?.['required']">Type is required.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputUrl" class="form-label">ImageUrl</label>
+          <input
+            formControlName="imgUrl"
+            class="form-control"
+            id="exampleInputUrl"
+            placeholder="Pokemon ImageUrl"
+            url
+            required
+          />
+          <div
+            *ngIf="this.ImageUrl.invalid && this.ImageUrl.touched"
+            class="alert alert-danger p-1 px-3 mt-2"
+          >
+            <div *ngIf="this.ImageUrl.errors?.['required']">
+              Url is required.
+            </div>
+            <div *ngIf="this.ImageUrl.errors?.['pattern']">
+              Please enter valid url.
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="clearForm()"
+        (click)="modal.close('Save click')"
+      >
+        Close
+      </button>
+      <div
+        *ngIf="
+          !this.Name.invalid && !this.Types.invalid && !this.ImageUrl.invalid;
+          else elseBlock
+        "
+      >
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="addPokemon()"
+          (click)="setIsloaded()"
+          (click)="modal.close('Save click')"
+        >
+          Save changes
+        </button>
+      </div>
+      <div>
+        <ng-template #elseBlock>
+          <button type="submit" class="btn btn-primary" disabled>
+            Save changes
+          </button>
+        </ng-template>
+      </div>
+    </div>
+  </ng-template>
+
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">
     Add Pokemon
   </button>
 </div>
@@ -56,135 +162,4 @@
     (pageChange)="this.refreshPokemons()"
   >
   </ngb-pagination>
-  <div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Pokemon</h1>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            (click)="clearForm()"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <form [formGroup]="pokemonForm">
-            <div class="mb-3">
-              <label for="exampleInputName" class="form-label"
-                >Pokemon Name</label
-              >
-              <input
-                formControlName="name"
-                class="form-control"
-                id="exampleInputName"
-                aria-describedby="emailHelp"
-                placeholder="Pokemon Name"
-                required
-                minlength="4"
-              />
-              <div
-                *ngIf="this.Name.touched && this.Name.invalid"
-                class="alert alert-danger p-1 px-3 mt-2"
-              >
-                <div *ngIf="this.Name.errors?.['required']">
-                  Name is required.
-                </div>
-                <div *ngIf="this.Name.errors?.['minlength']">
-                  Name must be at least 4 characters long.
-                </div>
-                <div *ngIf="this.Name.errors?.['pattern']">
-                  Name can not be number.
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputType" class="form-label"
-                >Speciality</label
-              >
-              <input
-                formControlName="type"
-                class="form-control"
-                id="exampleInputType"
-                placeholder="Pokemon Speciality"
-                required
-              />
-              <div
-                *ngIf="this.Types.invalid && this.Types.touched"
-                class="alert alert-danger p-1 px-3 mt-2"
-              >
-                <div *ngIf="this.Types.errors?.['required']">
-                  Type is required.
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputUrl" class="form-label">ImageUrl</label>
-              <input
-                formControlName="imgUrl"
-                class="form-control"
-                id="exampleInputUrl"
-                placeholder="Pokemon ImageUrl"
-                url
-                required
-              />
-              <div
-                *ngIf="this.ImageUrl.invalid && this.ImageUrl.touched"
-                class="alert alert-danger p-1 px-3 mt-2"
-              >
-                <div *ngIf="this.ImageUrl.errors?.['required']">
-                  Url is required.
-                </div>
-                <div *ngIf="this.ImageUrl.errors?.['pattern']">
-                  Please enter valid url.
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            (click)="clearForm()"
-          >
-            Close
-          </button>
-          <div
-            *ngIf="
-              !this.Name.invalid &&
-                !this.Types.invalid &&
-                !this.ImageUrl.invalid;
-              else elseBlock
-            "
-          >
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="addPokemon()"
-              (click)="setIsloaded()"
-              data-bs-dismiss="modal"
-            >
-              Save changes
-            </button>
-          </div>
-          <div>
-            <ng-template #elseBlock>
-              <button type="submit" class="btn btn-primary" disabled>
-                Save changes
-              </button>
-            </ng-template>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
