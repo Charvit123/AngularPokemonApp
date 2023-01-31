@@ -48,7 +48,7 @@ export class PokemonShowComponent implements OnInit {
           this.allPokemon.unshift(pokemon);
         }
         this.collectionSize = this.allPokemon.length;
-        this.pokemonsOnThisPage = this.allPokemon.slice(0, this.pageSize);
+        this.refreshPokemons();
       },
       error: (err) => {
         this.errMsg = err.message;
