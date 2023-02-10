@@ -22,51 +22,33 @@
           minlength="4"
         />
         <div
-          *ngIf="this.Name.touched && this.Name.invalid"
+          *ngIf="this.name.touched && this.name.invalid"
           class="alert alert-danger p-1 px-3 mt-2"
         >
-          <div *ngIf="this.Name.errors?.['required']">Name is required.</div>
-          <div *ngIf="this.Name.errors?.['minlength']">
+          <div *ngIf="this.name.errors?.['required']">Name is required.</div>
+          <div *ngIf="this.name.errors?.['minlength']">
             Name must be at least 4 characters long.
           </div>
-          <div *ngIf="this.Name.errors?.['pattern']">
+          <div *ngIf="this.name.errors?.['pattern']">
             Name can not be number.
           </div>
         </div>
       </div>
       <div class="mb-3">
-        <label for="exampleInputType" class="form-label">Speciality</label>
+        <label for="exampleInputPowerId" class="form-label">Power Id</label>
         <input
-          formControlName="type"
+          formControlName="powerId"
           class="form-control"
-          id="exampleInputType"
+          id="exampleInputPowerId"
           placeholder="Pokemon Speciality"
           required
         />
         <div
-          *ngIf="this.Types.invalid && this.Types.touched"
+          *ngIf="this.powerId.invalid && this.powerId.touched"
           class="alert alert-danger p-1 px-3 mt-2"
         >
-          <div *ngIf="this.Types.errors?.['required']">Type is required.</div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputUrl" class="form-label">ImageUrl</label>
-        <input
-          formControlName="imgUrl"
-          class="form-control"
-          id="exampleInputUrl"
-          placeholder="Pokemon ImageUrl"
-          url
-          required
-        />
-        <div
-          *ngIf="this.ImageUrl.invalid && this.ImageUrl.touched"
-          class="alert alert-danger p-1 px-3 mt-2"
-        >
-          <div *ngIf="this.ImageUrl.errors?.['required']">Url is required.</div>
-          <div *ngIf="this.ImageUrl.errors?.['pattern']">
-            Please enter valid url.
+          <div *ngIf="this.powerId.errors?.['required']">
+            Power Id is required.
           </div>
         </div>
       </div>
@@ -80,12 +62,7 @@
     >
       Close
     </button>
-    <div
-      *ngIf="
-        !this.Name.invalid && !this.Types.invalid && !this.ImageUrl.invalid;
-        else elseBlock
-      "
-    >
+    <div *ngIf="!this.name.invalid && !this.powerId.invalid; else elseBlock">
       <button
         type="button"
         class="btn btn-primary"

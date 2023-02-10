@@ -1,3 +1,4 @@
+import { PokemonFormModel } from './../model/pokemonForm.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PokemonModel } from '../model/pokemon.model';
@@ -11,7 +12,7 @@ export class PokemonService {
   getPokemon() {
     return this.http.get<PokemonModel[]>(this.baseUrl);
   }
-  addPokemon(pokemon: PokemonModel) {
+  addPokemon(pokemon: PokemonFormModel) {
     return this.http.post<PokemonModel>(this.baseUrl, pokemon);
   }
   getPokemonById(id: number | string) {
