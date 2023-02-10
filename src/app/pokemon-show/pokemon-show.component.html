@@ -42,7 +42,7 @@
     <div class="row" *ngIf="this.pokemonsOnThisPage.length == 0">
       No Pokemon
     </div>
-    <div *ngFor="let pokemon of pokemonsOnThisPage; let i = index">
+    <div *ngFor="let pokemon of this.pokemonsOnThisPage; let i = index">
       <app-pokemon-details [pokemon]="pokemon"></app-pokemon-details>
     </div>
   </div>

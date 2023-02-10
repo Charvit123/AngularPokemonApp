@@ -18,6 +18,8 @@ export class AddPokemonButtonComponent implements OnInit {
   @Input() allPokemon: PokemonModel[] = [];
   @Input() refreshPokemons: Function = () => {};
   @Input() setErrorMessage: Function = () => {};
+  page = 1;
+  pageSize = 8;
   pokemonForm: FormGroup;
 
   validUrl = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';

@@ -51,19 +51,15 @@ export class PokemonShowComponent implements OnInit {
 
   refreshPokemons() {
     console.log("Function Called");
-    this.allPokemon.unshift({
-      name: "ABC",
-      type: "ABC",
-      imgUrl: "ABC",
-    });
     this.collectionSize = this.allPokemon.length;
     console.log(this.allPokemon);
-    console.log(this.page, this.pageSize); 
+    console.log(this.page, this.pageSize);    
+    this.pokemonsOnThisPage = this.allPokemon.slice();
+    console.log(this.pokemonsOnThisPage); 
     
-    this.pokemonsOnThisPage = this.allPokemon.slice(
-      (this.page - 1) * this.pageSize,
-      (this.page - 1) * this.pageSize + this.pageSize
-    );
-    
+    // this.pokemonsOnThisPage = this.allPokemon.slice(
+    //   (this.page - 1) * this.pageSize,
+    //   (this.page - 1) * this.pageSize + this.pageSize,
+    // )
   }
 }

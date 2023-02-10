@@ -20,14 +20,21 @@
           >
         </li>
       </ul>
-      <form class="d-flex">
+      <form class="d-flex" [formGroup]="this.searchBar">
         <input
           class="form-control me-2"
           type="search"
           placeholder="Search"
           aria-label="Search"
+          formControlName="searchValue"
         />
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button
+          class="btn btn-outline-success"
+          type="submit"
+          (click)="this.onSubmit()"
+        >
+          Search
+        </button>
       </form>
     </div>
   </div>
