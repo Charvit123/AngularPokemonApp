@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { PokemonModel } from './model/pokemon.model';
-import { PokemonService } from './services/pokemon.service';
+import { PokemonService } from './Pokemon/services/pokemon.service';
 
 @Component({
   selector: 'app-root',

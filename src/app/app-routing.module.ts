@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
-import { PokemonDetailsPageComponent } from './pokemon-details-page/pokemon-details-page.component';
-import { PokemonShowComponent } from './pokemon-show/pokemon-show.component';
+import { PokemonDetailsPageComponent } from './Pokemon/pokemon-details-page/pokemon-details-page.component';
+import { PokemonShowComponent } from './Pokemon/pokemon-show/pokemon-show.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

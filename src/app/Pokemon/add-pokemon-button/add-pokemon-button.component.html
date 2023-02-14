@@ -5,7 +5,7 @@
       type="button"
       class="btn-close"
       aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
+      (click)="this.closeModal(modal)"
     ></button>
   </div>
   <div class="modal-body">
@@ -37,23 +37,23 @@
       <div class="mb-3">
         <label for="exampleInputType" class="form-label">Speciality</label>
         <input
-          formControlName="type"
+          formControlName="power"
           class="form-control"
           id="exampleInputType"
           placeholder="Pokemon Speciality"
           required
         />
         <div
-          *ngIf="this.Types.invalid && this.Types.touched"
+          *ngIf="this.Powers.invalid && this.Powers.touched"
           class="alert alert-danger p-1 px-3 mt-2"
         >
-          <div *ngIf="this.Types.errors?.['required']">Type is required.</div>
+          <div *ngIf="this.Powers.errors?.['required']">Type is required.</div>
         </div>
       </div>
       <div class="mb-3">
         <label for="exampleInputUrl" class="form-label">ImageUrl</label>
         <input
-          formControlName="imgUrl"
+          formControlName="imageUrl"
           class="form-control"
           id="exampleInputUrl"
           placeholder="Pokemon ImageUrl"
@@ -82,7 +82,7 @@
     </button>
     <div
       *ngIf="
-        !this.Name.invalid && !this.Types.invalid && !this.ImageUrl.invalid;
+        !this.Name.invalid && !this.Powers.invalid && !this.ImageUrl.invalid;
         else elseBlock
       "
     >

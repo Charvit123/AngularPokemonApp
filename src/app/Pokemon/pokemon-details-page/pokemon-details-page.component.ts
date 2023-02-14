@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PokemonModel } from '../model/pokemon.model';
-import { PokemonService } from '../services/pokemon.service';
+import { PokemonModel } from '../../model/pokemon.model';
+import { PokemonService } from './../services/pokemon.service';
 
 @Component({
   selector: 'app-pokemon-details-page',
@@ -28,8 +28,8 @@ export class PokemonDetailsPageComponent implements OnInit {
       next: (response: PokemonModel) => {
         this.pokemon = {
           name: response.name,
-          type: response.type,
-          imgUrl: response.imgUrl,
+          powerId : response.powerId,
+          imageUrl: response.imageUrl,
         };
       },
       error: (err) => {

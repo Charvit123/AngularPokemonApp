@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { PokemonModel } from '.././model/pokemon.model';
-import { PokemonService } from '.././services/pokemon.service';
+import { PokemonService } from '../Pokemon/services/pokemon.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -37,11 +37,11 @@ export class AddPokemonButtonComponent implements OnInit {
 
   ngOnInit(): void {
     this.pokemonForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern(/[A-Za-z]\d*$/)]],
+      name: [''],
 
-      type: ['', [Validators.required]],
+      power: [''],
 
-      imgUrl: ['', [Validators.required, Validators.pattern(this.validUrl)]],
+      imageUrl: [''],
     });
   }
 
@@ -49,24 +49,24 @@ export class AddPokemonButtonComponent implements OnInit {
     return this.pokemonForm.get('name') as FormControl;
   }
 
-  public get Types(): FormControl {
-    return this.pokemonForm.get('type') as FormControl;
+  public get Powers(): FormControl {
+    return this.pokemonForm.get('power') as FormControl;
   }
 
   public get ImageUrl(): FormControl {
-    return this.pokemonForm.get('imgUrl') as FormControl;
+    return this.pokemonForm.get('imageUrl') as FormControl;
   }
 
   clearForm() {
     this.Name.reset();
-    this.Types.reset();
+    this.Powers.reset();
     this.ImageUrl.reset();
   }
   addPokemon() {
     let pokemon: PokemonModel = {
       name: this.Name.value,
-      type: this.Types.value,
-      imgUrl: this.ImageUrl.value,
+      powerId: this.Powers.value,
+      imageUrl: this.ImageUrl.value,
     };
 
     this.pokemonService.addPokemon(pokemon).subscribe({
@@ -82,8 +82,24 @@ export class AddPokemonButtonComponent implements OnInit {
   }
 
   saveChanges(modal: any) {
+
+    let pokemon: PokemonModel = {
+      name: this.Name.value,
+      powerId: this.Powers.value,
+      imageUrl: this.ImageUrl.value,
+    };
+
+    this.pokemonService.addPokemon(pokemon).subscribe({
+      next: (response) => {
+        this.allPokemon.unshift(response);
+        this.refreshPokemons();
+        this.clearForm();
+      },
+      error: (err) => {
+        this.setErrorMessage(err.message);
+      },
+    });
     modal.close('Save click');
-    this.addPokemon();
   }
 
   closeModal(modal: any) {
